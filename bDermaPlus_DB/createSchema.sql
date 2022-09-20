@@ -53,3 +53,81 @@ CREATE TABLE `bdermaplus`.`customer` (
     REFERENCES `bdermaplus`.`category` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+
+--creating appointment table
+CREATE TABLE `bdermaplus`.`appointment` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `customer_id` INT NOT NULL,
+  `service_id` INT NOT NULL,
+  `status` VARCHAR(10) NOT NULL,
+  `is_confirmed` TINYINT(0) NOT NULL,
+  `appointmentc_date` DATETIME NOT NULL,
+  PRIMARY KEY (`id`));
+
+--creating product table
+CREATE TABLE `bdermaplus`.`product` (
+  `product_id` INT NOT NULL AUTO_INCREMENT,
+  `service_id` INT NULL,
+  `name` VARCHAR(45) NOT NULL,
+  `description` MEDIUMTEXT NULL,
+  `is_favorite` TINYINT(0) NOT NULL,
+  `product_price` DECIMAL NOT NULL,
+  PRIMARY KEY (`product_id`),
+  INDEX `service_id_idx` (`service_id` ASC) VISIBLE,
+  CONSTRAINT `service_id`
+    FOREIGN KEY (`service_id`)
+    REFERENCES `bdermaplus`.`service` (`service_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+--create invoice table
+CREATE TABLE `bdermaplus`.`invoice` (
+  `invoice_number` INT NOT NULL AUTO_INCREMENT,
+  `customer_id` INT NOT NULL,
+  `service_id` INT NULL,
+  `product_id` INT NULL,
+  `invoice_date` DATE NOT NULL,
+  `description` LONGTEXT NULL,
+  `total` DECIMAL NOT NULL,
+  PRIMARY KEY (`invoice_number`));
+
+
+--------ALTER TABLES----------
+
+--appointment relation
+ALTER TABLE `bdermaplus`.`appointment` 
+ADD CONSTRAINT `app_serviceid`
+  FOREIGN KEY (`service_id`)
+  REFERENCES `bdermaplus`.`service` (`service_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `app_customerid`
+  FOREIGN KEY (`customer_id`)
+  REFERENCES `bdermaplus`.`customer` (`customer_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+--invoice relation
+ALTER TABLE `bdermaplus`.`invoice` 
+ADD INDEX `inv_customerid_idx` (`customer_id` ASC) VISIBLE,
+ADD INDEX `inv_serviceid_idx` (`service_id` ASC) VISIBLE,
+ADD INDEX `inv_productid_idx` (`product_id` ASC) VISIBLE;
+;
+ALTER TABLE `bdermaplus`.`invoice` 
+ADD CONSTRAINT `inv_customerid`
+  FOREIGN KEY (`customer_id`)
+  REFERENCES `bdermaplus`.`customer` (`customer_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `inv_serviceid`
+  FOREIGN KEY (`service_id`)
+  REFERENCES `bdermaplus`.`service` (`service_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `inv_productid`
+  FOREIGN KEY (`product_id`)
+  REFERENCES `bdermaplus`.`product` (`product_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+--
