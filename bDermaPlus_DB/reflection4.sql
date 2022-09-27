@@ -57,3 +57,34 @@ CREATE DATABASE "quiz4question4.db"
     TABLESPACE = pg_default
     CONNECTION LIMIT = -1
     IS_TEMPLATE = False;
+
+CREATE TABLE friends (id serial PRIMARY KEY, name VARCHAR(20), email VARCHAR(45));
+INSERT INTO friends (id, name, email) VALUES (200,'Elisa', 'elisa@mcgill.ca');
+INSERT INTO friends (id, name, email) VALUES (201,'Elisa2', 'elisa2@mcgill.ca');
+SELECT * FROM friends;
+
+--------------------------------------
+/* QUestion5: SQL SERVER
+Microsoft SQL server 2017 express was the only free version I found (not azure trial one) and I choose the basic one
+after installation you need to connect and SQL CMD will pop up
+Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True;
+then time to instal SQL Server Management Studio (SSMS) release 18.12.1 */
+
+create table champions (name varchar(45), title varchar(45), score int);
+
+
+
+USE [quiz4question5.db]
+GO
+
+INSERT INTO dbo.champions
+           (name
+           ,title
+           ,score)
+     VALUES
+           ('konstantine'
+           ,'king'
+           ,100)
+GO
+
+select * from dbo.champions
