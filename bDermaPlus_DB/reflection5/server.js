@@ -3,6 +3,7 @@ const app = express();
 const http = require("http"); // for serving HTTP requests
 const fs = require("fs").promises; // for reading files
 const querystring = require("querystring"); // for parsing form fields from POST
+const { check, validationResult } = require("express-validator");
 
 const PORT = {
   BACKEND: 8080,
@@ -119,6 +120,10 @@ app.post("/insert-data", (req, res) => {
       let address = fields.address;
       let status = fields.status;
       let is_vip = fields.is_vip;
+
+      const errors = validationResult(req);
+      console.log(check("email").isEmail());
+      !!errors.errors.length && console.log(errors);
 
       connection.connect(function (err) {
         if (err) {
