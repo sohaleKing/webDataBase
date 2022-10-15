@@ -39,6 +39,52 @@ app.get("/customer-list", (req, res) => {
   });
 });
 
+//show all the customer which live in montreal
+app.get("/montreal-customers", (req, res) => {
+  connection.connect(function (err) {
+    if (err) {
+      return console.error("error: " + err.message);
+    }
+    try {
+      connection.query(
+        "SELECT * FROM customer WHERE address='Montreal'",
+        function (err, result) {
+          if (err) {
+            return console.error("error: " + err.message);
+          }
+          // console.log(result);
+          res.json({ result });
+        }
+      );
+    } finally {
+      connection.end();
+    }
+  });
+});
+
+//includes a filtering into two or more sub-cases
+app.get("/filtered-customers", (req, res) => {
+  connection.connect(function (err) {
+    if (err) {
+      return console.error("error: " + err.message);
+    }
+    try {
+      connection.query(
+        "SELECT first_name, email, CASE WHEN address='montreal' THEN 'home-town' WHEN address='laval' THEN 'north-shore' ELSE 'outside-QC' END AS 'provice' FROM customer",
+        function (err, result) {
+          if (err) {
+            return console.error("error: " + err.message);
+          }
+          // console.log(result);
+          res.json({ result });
+        }
+      );
+    } finally {
+      connection.end();
+    }
+  });
+});
+
 //landing api point
 app.get("/", (req, res) => {
   res.json({ message: "hi" });
