@@ -133,6 +133,35 @@ app.listen(PORT.BACKEND, () => {
 
 ### 4. Return the query results over HTTP in HTML (with CSS if you wish) with the web server technology of your choice.
 
+```js
+//customers list
+const customer = client.db(dbName).collection("customer");
+app.get("/customer", (req, res) => {
+  customer.find({}).toArray((err, items) => {
+    !!err && console.log(error);
+    let tableContent =
+      "<table border='1'> <tr><th>First Name</th><th>Last Name</th><th>email</th><th>city</th></tr>";
+    for (let x in items) {
+      tableContent +=
+        "<tr><td>" +
+        JSON.stringify(items[x].first_name) +
+        "</td><td>" +
+        JSON.stringify(items[x].last_name) +
+        "</td><td>" +
+        JSON.stringify(items[x].email) +
+        "</td><td>" +
+        JSON.stringify(items[x].city) +
+        "</td></tr>";
+    }
+    tableContent += "</table>";
+    res.write("<h1>cutomer list inside he bdermaplus databse</h1>");
+    res.write(`${tableContent}`);
+    res.send();
+    // res.json(items);
+  });
+});
+```
+
 ### 5. Create a HTML form to control the query parameters, again with the tools of your choice.
 
 ### 6. With the tools of your choice, connect the noSQL database as back end into the query-form front end.

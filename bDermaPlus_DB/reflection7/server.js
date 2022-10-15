@@ -33,11 +33,29 @@ app.get("/", (req, res) => {
 });
 
 //customers list
+const customer = client.db(dbName).collection("customer");
 app.get("/customer", (req, res) => {
-  const customer = client.db(dbName).collection("customer");
   customer.find({}).toArray((err, items) => {
     !!err && console.log(error);
-    res.json(items);
+    let tableContent =
+      "<table border='1'> <tr><th>First Name</th><th>Last Name</th><th>email</th><th>city</th></tr>";
+    for (let x in items) {
+      tableContent +=
+        "<tr><td>" +
+        JSON.stringify(items[x].first_name) +
+        "</td><td>" +
+        JSON.stringify(items[x].last_name) +
+        "</td><td>" +
+        JSON.stringify(items[x].email) +
+        "</td><td>" +
+        JSON.stringify(items[x].city) +
+        "</td></tr>";
+    }
+    tableContent += "</table>";
+    res.write("<h1>cutomer list inside he bdermaplus databse</h1>");
+    res.write(`${tableContent}`);
+    res.send();
+    // res.json(items);
   });
 });
 
