@@ -43,6 +43,94 @@ or lets say for the more advancer version
 
 ### 3. Implement that same query through NodeJS or another access technology that is not the interactive shell of the database technology you chose.
 
+please visit the repo at :
+https://github.com/sohaleKing/webDataBase/tree/master/bDermaPlus_DB/reflection7
+
+or look at the code below:
+
+```js
+const express = require("express");
+const app = express();
+const { MongoClient } = require("mongodb");
+
+const PORT = {
+  BACKEND: 9090,
+  DATABASE: 27017,
+};
+
+let url = `mongodb://localhost:${PORT.DATABASE}`;
+const client = new MongoClient(url);
+const dbName = "bdermaplus";
+
+const startConnection = () => {
+  client
+    .connect()
+    .then((client) => client.db(dbName).listCollections().toArray())
+    .then((collections) => {
+      console.log("you collections are");
+      collections.forEach((collection) => console.log(collection.name));
+    });
+};
+
+const endConnection = () => {
+  console.log("end connection");
+  client.close();
+};
+
+//landing api point
+app.get("/", (req, res) => {
+  startConnection();
+  res.json({ connected: dbName });
+});
+
+//customers list
+app.get("/customer", (req, res) => {
+  const customer = client.db(dbName).collection("customer");
+  customer.find({}).toArray((err, items) => {
+    !!err && console.log(error);
+    res.json(items);
+  });
+});
+
+//services
+app.get("/service", (req, res) => {
+  const service = client.db(dbName).collection("service");
+  service.find({}).toArray((err, items) => {
+    !!err && console.log(error);
+    res.json(items);
+  });
+});
+
+//finishing
+app.get("/exit", (req, res) => {
+  endConnection();
+  res.json({ message: "bye" });
+  res.end();
+});
+
+//show montrealers
+app.get("/montrealer", (req, res) => {
+  const montrealer = client.db(dbName).collection("customer");
+  montrealer.find({ city: "montreal" }).toArray((err, items) => {
+    !!err && console.log(error);
+    res.json(items);
+  });
+});
+
+//show more expensive than 150 CAD
+app.get("/expensive", (req, res) => {
+  const expensive = client.db(dbName).collection("service");
+  expensive.find({ price: { $gt: "150" } }).toArray((err, items) => {
+    !!err && console.log(error);
+    res.json(items);
+  });
+});
+
+app.listen(PORT.BACKEND, () => {
+  console.log("listening on PORT " + PORT.BACKEND);
+});
+```
+
 ### 4. Return the query results over HTTP in HTML (with CSS if you wish) with the web server technology of your choice.
 
 ### 5. Create a HTML form to control the query parameters, again with the tools of your choice.

@@ -57,6 +57,24 @@ app.get("/exit", (req, res) => {
   res.end();
 });
 
+//show montrealers
+app.get("/montrealer", (req, res) => {
+  const montrealer = client.db(dbName).collection("customer");
+  montrealer.find({ city: "montreal" }).toArray((err, items) => {
+    !!err && console.log(error);
+    res.json(items);
+  });
+});
+
+//show more expensive than 150 CAD
+app.get("/expensive", (req, res) => {
+  const expensive = client.db(dbName).collection("service");
+  expensive.find({ price: { $gt: "150" } }).toArray((err, items) => {
+    !!err && console.log(error);
+    res.json(items);
+  });
+});
+
 app.listen(PORT.BACKEND, () => {
   console.log("listening on PORT " + PORT.BACKEND);
 });
