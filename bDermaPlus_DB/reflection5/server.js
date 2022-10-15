@@ -159,6 +159,52 @@ app.post("/insert-data", (req, res) => {
   });
 });
 
+app.get("/search-by-name", (req, res) => {
+  fs.readFile(__dirname + "/search-by-name.html")
+    .then((content) => {
+      res.setHeader("Content-Type", "text/html");
+      res.writeHead(200);
+      res.end(content);
+    })
+    .catch((err) => {
+      res.writeHead(500);
+      res.end(err);
+    });
+});
+
+app.post("/find-name", (req, res) => {
+  let body = "";
+  req.on("data", (chunk) => {
+    body += chunk.toString();
+    req.on("end", () => {
+      const fields = querystring.parse(body);
+      let search_name = fields.search_name;
+
+      connection.connect(function (err) {
+        if (err) {
+          return console.error("error: " + err.message);
+        }
+        try {
+          const str = `'${search_name}'`;
+          connection.query(
+            "SELECT first_name, last_name, email FROM customer WHERE first_name =" +
+              str,
+            function (err, result) {
+              if (err) {
+                return console.error("error: " + err.message);
+              }
+              console.log(result);
+              res.json({ result });
+            }
+          );
+        } finally {
+          res.status(200);
+        }
+      });
+    });
+  });
+});
+
 app.listen(PORT.BACKEND, () => {
   console.log("listening on PORT " + PORT.BACKEND);
 });
