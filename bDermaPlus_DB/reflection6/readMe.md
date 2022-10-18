@@ -67,6 +67,28 @@ https://ourcodingclub.github.io/tutorials/fortran-intro/
    https://github.com/sohaleKing/webDataBase/tree/master/bDermaPlus_DB/reflection6
    it was not easy qorking with other new technology in that short time! but lovely expreince and basic new knowledge paid back the effort!
 
+```c#
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.MapGet("/", () => "Hello World"
+);
+
+app.MapGet("/customer", () =>
+{
+    string mycon = "Server =127.0.0.1; Port=3306; User=root; Password =LoveGod2021* ; Database =bdermaplus";
+    using var connection = new MySql.Data.MySqlClient.MySqlConnection(mycon);
+    connection.Open();
+    using var command = new MySql.Data.MySqlClient.MySqlCommand("SELECT field FROM table;", connection);
+    using var reader = command.ExecuteReader();
+    while (reader.Read())
+        Console.WriteLine(reader.GetString(0));
+}
+);
+
+app.Run();
+```
+
 8. Was it easier in some way with the technologies you chose than with NodeJS and SQLite?
    Was anything about it harder? Please discuss what was different and how.
    NodeJs specially the SQLite are very easier for us since the intent of this course was more focus on 100% JavaScript stacks since beginning! less document to study! harder to setup specialy the visual studio needs lots of time and space to be install on local machine! new language new concept in matter of being object oriented compare to functional! C# is statically typed, while JavaScript is dynamically typed. we can easily change the type in result in javascript but C# is strongly typed. C# has LINQ, a powerful . NET component that adds native data querying capabilities, but JavaScript has separate libraries that can cover this functionality, one being Underscore. working with node package manager makes the life easier for the developer to install any dependency you want with no any setup! just npm install and package name and it would be available through your code! another thing is manipulating the DOM in Javascript is a lot easier since its a browser native language!
