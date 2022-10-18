@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const { MongoClient } = require("mongodb");
+const fs = require("fs").promises; // for reading files
 
 const PORT = {
   BACKEND: 9090,
@@ -93,6 +94,77 @@ app.get("/expensive", (req, res) => {
   });
 });
 
+//html access point
+app.get("/search-customer", (req, res) => {
+  fs.readFile(__dirname + "/query-param-form.html")
+    .then((content) => {
+      res.setHeader("Content-Type", "text/html");
+      res.writeHead(200);
+      res.end(content);
+    })
+    .catch((err) => {
+      res.writeHead(500);
+      res.end(err);
+    });
+});
+
+//search-customer-by-first-name
+app.get("/search-customer/first_name/", (req, res) => {
+  const searchContent = req.query.searchContent;
+  client
+    .db(dbName)
+    .collection("customer")
+    .find({ first_name: searchContent })
+    .toArray((err, items) => {
+      !!err && console.log(error);
+      items.length && res.json(items);
+      items.length || res.end("no records found");
+    });
+});
+
+//search-customer-by-last-name
+app.get("/search-customer/last_name/", (req, res) => {
+  const searchContent = req.query.searchContent;
+  client
+    .db(dbName)
+    .collection("customer")
+    .find({ last_name: searchContent })
+    .toArray((err, items) => {
+      !!err && console.log(error);
+      items.length && res.json(items);
+      items.length || res.end("no records found");
+    });
+});
+
+//search-customer-by-email
+app.get("/search-customer/email/", (req, res) => {
+  const searchContent = req.query.searchContent;
+  client
+    .db(dbName)
+    .collection("customer")
+    .find({ email: searchContent })
+    .toArray((err, items) => {
+      !!err && console.log(error);
+      items.length && res.json(items);
+      items.length || res.end("no records found");
+    });
+});
+
+//search-customer-by-city
+app.get("/search-customer/city/", (req, res) => {
+  const searchContent = req.query.searchContent;
+  client
+    .db(dbName)
+    .collection("customer")
+    .find({ city: searchContent })
+    .toArray((err, items) => {
+      !!err && console.log(error);
+      items.length && res.json(items);
+      items.length || res.end("no records found");
+    });
+});
+
+//app listen
 app.listen(PORT.BACKEND, () => {
   console.log("listening on PORT " + PORT.BACKEND);
 });

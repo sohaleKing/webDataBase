@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>query param form</title>
+    <style>
+      label {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>customer search form</h1>
+    <form
+      id="searchForm"
+      action=""
+      onsubmit="selectedSearch( document.getElementById('searchBySelect').selectedOptions[0].value)"
+      method="GET"
+    >
+      <fieldset>
+        <label>search customer by</label>
+        <select id="searchBySelect" onchange="">
+          <option value="">Select by</option>
+          <option value="first_name">first name</option>
+          <option value="last_name">last name</option>
+          <option value="email">email</option>
+          <option value="city">city</option>
+        </select>
+        <p>
+          <input
+            class="changeSelected"
+            type="text"
+            id="searchContent"
+            name="searchContent"
+            required
+          />
+        </p>
+        <p>
+          <button type="submit">Submit</button>
+        </p>
+      </fieldset>
+    </form>
+    <script defer>
+      const selectedSearch = (param) => {
+        let url = location.href;
+        switch (param) {
+          case "first_name":
+            url += "/first_name/";
+            document.getElementById("searchForm").setAttribute("action", url);
+            break;
+          case "last_name":
+            url += "/last_name/";
+            document.getElementById("searchForm").setAttribute("action", url);
+            break;
+          case "email":
+            url += "/email/";
+            document.getElementById("searchForm").setAttribute("action", url);
+            break;
+          case "city":
+            url += "/city/";
+            document.getElementById("searchForm").setAttribute("action", url);
+            break;
+        }
+      };
+    </script>
+  </body>
+</html>
