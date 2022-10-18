@@ -35,3 +35,53 @@ source: https://www.ibm.com/docs/en/personal-communications/13.0?topic=utility-o
 ## Next, look into the following additional programming languages that are also used with database technologies, sometimes even at back ends of web services. In your response, discuss why you think they were not highlighted as interesting options in the course outline. Also, identify some feasible options to connect to a DBMS with them.
 
 4. C, C++, C##
+   the C programming language because it’s the oldest and most widely used of the three, 1970s
+   C is still a low-level programming language, which performs almost as efficiently as assembly code. It provides base-level access to memory, and it requires very little runtime support.
+   Programmers still use it in operating systems, kernel-level software, hardware drivers, and applications that need to work with older code.
+
+C++ was developed as an extension of the C programming language
+C++ is considered an intermediate-level programming language, as it builds upon the low-level C language but has more advanced capabilities the goal to make C++ was to enhance C and add object-oriented programming capabilities without sacrificing speed or efficiency.
+
+C# is a high-level, object-oriented programming language that is also built as an extension of C. It was developed by Microsoft and It’s based in the .NET framework, but its backbone is still clearly the C language.
+C# compiles into byte-code, rather than machine code. That means it executes on a virtual computer that translates it into machine code on the fly. It adds garbage collection, uninitialized variable checking, bound checking, and type checking capabilities to the base C code.
+C# typically sees use in internal or enterprise applications, rather than commercial software. It’s found in client and server development in the .NET framework.
+
+5. Fortran
+   Fortran is a computer programming language that is extensively used in numerical, scientific computing. While outwith the scientific community, it has a strong user base with scientific programmers, and is also used in organisations such as weather forecasters, financial trading, and in engineering simulations. Fortran programs can be highly optimised to run on high performance computers, and in general the language is suited to producing code where performance is important.
+
+Fortran is a compiled language, or more specifically it is compiled ahead-of-time. In other words, you must perform a special step called compilation of your written code before you are able to run it on a computer. This is where Fortran differs to interpreted languages such as Python and R which run through an interpreter which executes the instructions directly, but at the cost of compute speed.
+
+Fortran has a set of rules used to determine whether a program is valid and can be understood by the computer, a bit like a human language. The combination of keywords and characters that are used to form Fortran programs are usually referred to as the language’s syntax. Fortran programs begin with the PROGRAM keyword, followed, optionally, by a name for the program. The end of the program should also be marked by END PROGRAM.
+this link would help to have an intro and tutorial to a basic fortan code:
+https://ourcodingclub.github.io/tutorials/fortran-intro/
+
+6. Cobol
+   COBOL stands for Common Business Oriented Language. It is imperative, procedural, and object-oriented. A compiler is a computer program that takes other computer programs written in a high-level (source) language and coverts them into another program, machine code, which the computer can understand. COBOL takes data from a file or database, processes, and outputs it. In short: COBOL takes data in, computes it, and outputs it afterwards.
+   Cobol is late 1950s! One source lists more than 29,010 companies as still using COBOL, about 0.8% market share. Another estimates that 200 billion lines of COBOL code are still active, and that 90% of Fortune 500 companies, most notably big finance, insurance companies, airlines and retail point-of-sale systems rely on COBOL.
+   COBOL persists for many equally valid reasons. One is that nothing is as flexible or reliable as COBOL. Banks, for example, need complete accuracy. COBOL outperforms Java in that respect. Another is that many of biggest enterprises in the world use core applications written in COBOL, and intervention is too risky, or expensive. COBOL’s enduring usefulness in a constantly changing digital world provide the combination of continued innovation and reliability which are IT necessities.
+
+## Finally, pick one of the programming languages discussed in this session as alternatives to NodeJS (or one of the three from the previous block of questions, if you really want to) and replicate functionality similar to the example code of Session 5 with that technology and the DBMS of your choice. Host your code on a public repository such as GitHub or similar, together with a setup script or instructions to install and configure the necessary components. Discuss the following three aspects of your experience.
+
+7. What is the URL of the repository? Did you have any difficulties creating or populating
+   it?
+   https://github.com/sohaleKing/webDataBase/tree/master/bDermaPlus_DB/reflection6
+   it was not easy qorking with other new technology in that short time! but lovely expreince and basic new knowledge paid back the effort!
+
+8. Was it easier in some way with the technologies you chose than with NodeJS and SQLite?
+   Was anything about it harder? Please discuss what was different and how.
+   NodeJs specially the SQLite are very easier for us since the intent of this course was more focus on 100% JavaScript stacks since beginning! less document to study! harder to setup specialy the visual studio needs lots of time and space to be install on local machine! new language new concept in matter of being object oriented compare to functional! C# is statically typed, while JavaScript is dynamically typed. we can easily change the type in result in javascript but C# is strongly typed. C# has LINQ, a powerful . NET component that adds native data querying capabilities, but JavaScript has separate libraries that can cover this functionality, one being Underscore. working with node package manager makes the life easier for the developer to install any dependency you want with no any setup! just npm install and package name and it would be available through your code! another thing is manipulating the DOM in Javascript is a lot easier since its a browser native language!
+
+9. If you were to start over with yet another technology pair (programming language and
+   DBMS), which ones would you pick and why? If you in fact experimented with several
+   before choosing one, how did that go?
+
+for the market needs and high demanding aspect I would go gor Java and also I believe although its completely different language but still close to JavaScript in matter on being symantec
+also there are many good sources to study! python is also very common and its the choice of many developers
+PHP is personaly the first language I started working as a job with but without the framworks like laravel its not a easy language and I still love the Javascript the most! JAVA is OOP and is most often used to build large enterprise-level applications. It is one of the oldest languages as well with multiple extraordinary features.
+here are some JAVA feautures I searched to complete my answer above:
+
+Object-Oriented Language — JAVA is specifically focused on object-oriented approaches. It means you cannot work without classes while using Java. OOP helps the programmers to write structured and well-organized code. The understanding and readability of code become easier through object-oriented programming.
+
+Multi-Threaded — Java allows programmers to write code where multiple tasks can be executed simultaneously. It can be very helpful when you need to execute a program in less time by running different operations in parallel.
+
+Secure — Java is considered a very secure programming language. Public encryption keys are used for authentication to make it safer for data-sensitive applications.
