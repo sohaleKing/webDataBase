@@ -164,4 +164,45 @@ app.get("/customer", (req, res) => {
 
 ### 5. Create a HTML form to control the query parameters, again with the tools of your choice.
 
+we created an endpoint /search-customer for that and an HTML form with the option to search like this:
+we pass the selected option through the selectedSearch function call argument like this:
+`onsubmit="selectedSearch( document.getElementById('searchBySelect').selectedOptions[0].value)"`
+then inside the script tag we define the function on defer and set the action attribute like this:
+here is an example of the switch case
+
+```js
+ const selectedSearch = (param) => {
+        let url = location.href;
+        switch (param) {
+          case "first_name":
+            url += "/first_name/";
+            document.getElementById("searchForm").setAttribute("action", url);
+            break;
+```
+
+to see the full html content please visit the repo at this address:
+https://github.com/sohaleKing/webDataBase/blob/master/bDermaPlus_DB/reflection7/query-param-form.html
+
 ### 6. With the tools of your choice, connect the noSQL database as back end into the query-form front end.
+
+now we come back to our express and define endpoints for each search cases!
+here we read the query and do the search base on that query
+
+```js
+app.get("/search-customer/first_name/", (req, res) => {
+  const searchContent = req.query.searchContent;
+  client
+    .db(dbName)
+    .collection("customer")
+    .find({ first_name: searchContent })
+    .toArray((err, items) => {
+      !!err && console.log(error);
+      items.length && res.json(items);
+      items.length || res.end("no records found");
+    });
+});
+```
+
+to see the full details please visit the link below
+
+https://github.com/sohaleKing/webDataBase/blob/master/bDermaPlus_DB/reflection7/server.js
