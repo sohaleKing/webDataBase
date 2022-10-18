@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "cHxXOBRGMzB1hk/gAeCg4MRrHhn+doNG1AAZU+jHKSY=",
+  "Source": "csharp-mysql-webapp",
+  "BasePath": "_content/csharp-mysql-webapp",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
