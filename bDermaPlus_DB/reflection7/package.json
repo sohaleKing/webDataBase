@@ -10,7 +10,9 @@
   "author": "Soheyl Rahgozar",
   "license": "ISC",
   "dependencies": {
+    "connect-flash": "^0.1.1",
     "express": "^4.18.2",
+    "express-session": "^1.17.3",
     "mongodb": "^4.10.0",
     "nodemon": "^2.0.20"
   }

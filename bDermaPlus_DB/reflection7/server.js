@@ -164,6 +164,19 @@ app.get("/search-customer/city/", (req, res) => {
     });
 });
 
+app.get("*", (req, res) => {
+  fs.readFile(__dirname + "/error.html")
+    .then((content) => {
+      res.setHeader("Content-Type", "text/html");
+      res.writeHead(200);
+      res.end(content);
+    })
+    .catch((err) => {
+      res.writeHead(500);
+      res.end(err);
+    });
+});
+
 //app listen
 app.listen(PORT.BACKEND, () => {
   console.log("listening on PORT " + PORT.BACKEND);

@@ -42,6 +42,9 @@
     </form>
     <script defer>
       const selectedSearch = (param) => {
+        console.log(
+          document.getElementById("searchBySelect").selectedOptions[0].value
+        );
         let url = location.href;
         switch (param) {
           case "first_name":
