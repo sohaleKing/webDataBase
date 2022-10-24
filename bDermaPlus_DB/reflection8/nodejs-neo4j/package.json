@@ -1,0 +1,16 @@
+{
+  "name": "reflection8",
+  "version": "1.0.0",
+  "description": "neo4j and nodejs",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "author": "Soheyl Rahgozar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "neo4j-driver": "^5.1.0",
+    "nodemon": "^2.0.20"
+  }
+}
