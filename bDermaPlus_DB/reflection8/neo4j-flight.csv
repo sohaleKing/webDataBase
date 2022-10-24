@@ -1,0 +1,9 @@
+flight,airline,depart,arrive,capacity
+FIN143,Finnair,CDG,HEL,160
+IR327,IranAir,YUL,CDG,180
+AC874,Air Canada,LAX,YUL,160
+AFR1165,Air France,CDG,IKA,180
+IR877,IranAir,IKA,PEK,136
+CCA111,China Airline,PEK,SYD,180
+AA100,American Airline,SYD,LAX,136
+FIN10,Finnair,HEL,PEK,180
