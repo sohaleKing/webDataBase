@@ -21,7 +21,7 @@ here are what I investigated (searching)
 
 ### 2.Write a query to return specific data (instead of the whole collection) in an interactive noSQL database shell (such as mongo shell), either using the example collections or your own data to populate two or more collections with at least two elements each.
 
-the MongoDB shell version v5.0.5 and gui mongo compass 1.33.1 were installed and mongo, mongod were added to env variables
+the MongoDB shell version v5.0.5 (or mongoDb community server) and gui mongo compass 1.33.1 were installed and mongo, mongod were added to env variables
 with MongoDB Compass a new connection made on localhost:27017
 
 - make sure the mongo MongoDB Database Server (MongoDB) is started in your services (adminitrative tools--> services)
