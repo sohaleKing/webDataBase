@@ -8,6 +8,7 @@ const PORT = {
   DATABASE: 27017,
 };
 
+//better do with 127.0.0.1 then localhost
 let url = `mongodb://localhost:${PORT.DATABASE}`;
 const client = new MongoClient(url);
 const dbName = "bdermaplus";
